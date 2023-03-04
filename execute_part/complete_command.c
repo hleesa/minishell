@@ -35,9 +35,12 @@ void	execute_list(t_pst *tree)
 
 void	execute_complete_list(t_pst *tree)
 {
+	const t_fd	fds = {dup_exit_if_error(STDIN_FILENO), \
+	dup_exit_if_error(STDOUT_FILENO)};
+
 	g_gb.is_child = 0;
 	execute_list(tree->left);
-	dup2_exit_if_error(g_gb.fds.std_in, STDIN_FILENO);
-	dup2_exit_if_error(g_gb.fds.std_out, STDOUT_FILENO);
+	dup2_exit_if_error(fds.std_in, STDIN_FILENO);
+	dup2_exit_if_error(fds.std_out, STDOUT_FILENO);
 	return ;
 }

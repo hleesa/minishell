@@ -54,13 +54,14 @@ void	ft_mktemp_child(int *pipe_fds, char **envp)
 
 char	*ft_mktemp_parent(int *pipe_fds, char **envp)
 {
-	char	buf[256];
+	char		buf[256];
+	const int	std_in = dup_exit_if_error(STDIN_FILENO);
 
 	ft_memset(buf, 0, 256);
 	redirect_r_pipe_to_stdin(pipe_fds);
 	wait(0);
 	read(STDIN_FILENO, buf, 256);
-	dup2_exit_if_error(g_gb.fds.std_in, STDIN_FILENO);
+	dup2_exit_if_error(std_in, STDIN_FILENO);
 	envp_clear(envp);
 	return (ft_strdup(buf));
 }

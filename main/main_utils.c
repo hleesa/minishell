@@ -43,8 +43,6 @@ int	global_init(void)
 	g_gb.envp_list = create_env_list(environ);
 	if (!g_gb.envp_list)
 		return (EXIT_FAILURE);
-	g_gb.fds.std_in = dup_exit_if_error(STDIN_FILENO);
-	g_gb.fds.std_out = dup_exit_if_error(STDOUT_FILENO);
 	return (EXIT_SUCCESS);
 }
 

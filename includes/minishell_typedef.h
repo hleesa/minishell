@@ -126,7 +126,6 @@ typedef struct s_global
 	t_env	*envp_list;
 	t_term	term;
 	int		is_child;
-	t_fd	fds;
 	int		exit_status;
 	int		pipe_level;
 }	t_global;
